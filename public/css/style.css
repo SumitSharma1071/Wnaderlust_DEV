@@ -1,0 +1,132 @@
+body{
+    overflow-x: hidden;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.body-container{
+    flex: 1;
+}
+
+/* Navbar */
+.navbar{
+    width: 100%;
+    background-color: white;
+}
+
+.fa-compass{
+    color: #fe424d;
+    font-size: 2.5rem;
+}
+.nav-link{
+    color: #222222 !important;
+}
+
+.search-bar .search-btn{
+    border-radius: 20px;
+    background-color: #fe424d;
+    color: white;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+}
+.search-bar .search-btn:hover{
+    border-radius: 20px;
+    background-color: #fe424d;
+    color: white;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+}
+.search-bar .search-inp{
+    width: 20rem !important;
+    border-radius: 20px;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+/* Footer */
+
+.f-link{
+    width: 100%;
+    text-align: center;
+    margin-bottom:5px;
+}
+.f-link a{
+    text-decoration: none;
+    color: #222222;
+}
+.f-link a:hover{
+    text-decoration: underline;
+}
+.f-info{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #9c9c9ccf;
+    background-color: #979797;
+    bottom: 0;
+}
+.f-socialMedia i{
+    padding: 0.7rem;
+}
+.f-socialMedia{
+    text-align: center;
+    width: 100%;
+    font-size: 1.2rem;
+}
+.f-link, .f-info, .f-brand{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+/* Home Page Cards */
+.row a{
+    text-decoration: none;
+}
+.card{
+    border: none !important;
+    margin: 1rem !important;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    height: 20rem !important;
+}
+.card-body{
+    text-decoration: none;
+    padding: 0 !important;
+}
+.card-text{
+    font-weight: 400 !important;
+}
+
+/* Card Effect */
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white !important;
+}
+
+/* New Lisitng */
+
+.row input, .row textarea{
+    border: 2px solid rgb(127, 127, 127);
+}
+.row label{
+    margin-top: 1rem;
+}
+
+/* Edit page */
+.edit{
+    margin-top: 15px !important;
+}
+
+/* Show Page */
+.show-image{
+    width: 100% !important;
+    height:60vh !important;
+}

@@ -1,0 +1,7 @@
+.flash-msg{
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-out{
+    opacity: 0;
+  transform: translateY(-10px);
+}
