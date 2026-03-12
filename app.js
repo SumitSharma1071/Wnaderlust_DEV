@@ -4,7 +4,7 @@ if(process.env.NODE_ENV != 'production'){
 
 const express = require('express');
 const app = express();
-let port = 8080;
+let port = process.env.PORT || 8080;
 let path = require('path');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
@@ -88,6 +88,9 @@ main()
     console.log(err);
 });
 
+app.get("/", (req, res) => {
+    res.redirect("/listing");
+});
 
 //  lisitng api's
 app.use('/listing', lisitngRouter);
