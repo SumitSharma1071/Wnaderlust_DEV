@@ -13,6 +13,7 @@ const MongoStore = require('connect-mongo').default;
 const flash = require('connect-flash');
 // Authentication
 const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local');
 const User = require('./model/user.js');
 
@@ -34,7 +35,7 @@ const sessionObject = {
     store,
     secret : process.env.SECRET,
     resave : false,
-    saveUninitialized : true,
+    saveUninitialized : false,
     cookie : {
         expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge : 7 * 24 * 60 * 60 * 1000,
@@ -65,6 +66,35 @@ app.use((req, res, next) => {
 passport.use(new LocalStrategy(User.authenticate()));
 
 // Serialize and Deserialize the Authentication
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "/auth/google/callback"
+  },
+  async function(accessToken, refreshToken, profile, done) {
+    try {
+        const email = profile.emails && profile.emails[0].value; // <- yahan email nikal rahe hain
+        if(!email) return done(new Error("No email found in Google profile"));
+
+        let user = await User.findOne({ googleId: profile.id });
+
+        if(user){
+            return done(null, user);
+        } else {
+            user = new User({
+                googleId: profile.id,
+                username: profile.displayName,
+                email: email // <- email must fill here
+            });
+            await user.save();
+            return done(null, user);
+        }
+    } catch(err) {
+        return done(err);
+    }
+  }
+));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -92,6 +122,13 @@ main()
     console.log("Connected Successfully");
 }).catch((err) =>{
     console.log(err);
+});
+
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect('/listing'); // ya jahan redirect karna ho
 });
 
 app.get("/", (req, res) => {
