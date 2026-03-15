@@ -113,7 +113,7 @@ body{
 
 /* New Lisitng */
 
-.row input, .row textarea{
+.row input, .row textarea, .row select{
     border: 2px solid rgb(127, 127, 127);
 }
 .row label{
@@ -129,4 +129,97 @@ body{
 .show-image{
     width: 100% !important;
     height:60vh !important;
+}
+
+/* Category */
+#tax-switch{
+  border: 1px solid black;
+  height: 3rem;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 2.2rem;
+}
+
+.tax-toggle{
+  display: none;
+}
+
+.form-check-input{
+  cursor: pointer;
+}
+
+.category-wrapper{
+  position: relative;
+  width: 100%;
+}
+
+.category-slider{
+  display: flex;
+  overflow-x: auto;
+  gap: 25px;
+  padding: 10px 40px;
+  scroll-behavior: smooth;
+}
+
+.category-slider::-webkit-scrollbar{
+  display: none;
+}
+
+.category-item{
+  flex: 0 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+.category-item p{
+  font-size: 0.8rem;
+}
+
+.category-item a{
+  text-decoration: none;
+  color: black;
+  opacity: 0.7;
+}
+
+.category-item a:hover{
+  opacity: 1;
+}
+
+.arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgb(255, 255, 255);
+  width: 30px;
+  height: 60px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.left{
+  left: 0;
+}
+
+.right{
+  right: 0;
+}
+
+/* 💻 Large Screen */
+@media (min-width: 924px){
+
+  .category-slider{
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    justify-content: center;
+  }
+
+  .arrow{
+    display: none;
+  }
+
 }

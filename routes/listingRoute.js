@@ -21,6 +21,10 @@ const listingController = require('../controller/listingcontroller.js');
 // Listing routes
 router.get('/', wrapAsync(listingController.index));
 
+router.get("/category/:name", isLoggedin, wrapAsync(listingController.category));
+
+router.get("/search",isLoggedin, wrapAsync(listingController.search));
+
 // Create new listing
 router.route("/new")
 .get(isLoggedin, listingController.newGet)

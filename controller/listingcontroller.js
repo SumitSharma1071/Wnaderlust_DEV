@@ -65,3 +65,33 @@ module.exports.deleteList = async(req, res) =>{
     req.flash('success', 'listing Deleted!');
     res.redirect('/listing');
 }
+
+module.exports.category = async (req, res) => {
+    let { name } = req.params;
+
+    const allListings = await listing.find({ category: name });
+
+    res.render("listings/listing.ejs", { allListings });
+}
+
+module.exports.search =  async (req, res) => {
+    let { q } = req.query;
+
+    const allListings = await listing.find({
+        $or: [
+            { title: { $regex: q, $options: "i" } },
+            { location: { $regex: q, $options: "i" } },
+            { country: { $regex: q, $options: "i" } },
+            { category: { $regex: q, $options: "i" } },
+            { description: { $regex: q, $options: "i" } }
+        ]
+    });
+
+    if(allListings.length == 0){
+        req.flash('error', " Sorry ! Nothing is here Relevant to this");
+        res.redirect('/listing');
+        return;
+    }
+
+    res.render("listings/listing.ejs", { allListings });
+}

@@ -56,6 +56,12 @@ app.use(express.json());
 // Authentication Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+    res.locals.currUser = req.user;
+    next();
+}); 
+
 passport.use(new LocalStrategy(User.authenticate()));
 
 // Serialize and Deserialize the Authentication

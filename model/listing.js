@@ -17,6 +17,9 @@ let listingSchema = new mongoose.Schema({
             url : String,
             filename : String,
         },
+        category : {
+            type : String,
+        },
         location: {
             type : String,
         },

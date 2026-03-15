@@ -1,4 +1,5 @@
 const Joi = require("joi");
+const { category } = require("./controller/listingcontroller");
 
 const listingSchema = Joi.object({
   listing: Joi.object({
@@ -11,7 +12,7 @@ const listingSchema = Joi.object({
       url: Joi.string().allow("", null),
       filename: Joi.string().allow("", null)
     }).optional(),
-
+    category : Joi.string().required(),
     price: Joi.number().required().min(0)
   }).required()
 });

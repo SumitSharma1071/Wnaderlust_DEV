@@ -2,7 +2,7 @@
 
 <body>
     <div class="row edit">
-        <div class="col-8 offset-2">
+        <div class="col-10 col-md-8 offset-md-2 mx-auto">
             <h1>Edit Listing</h1>
         <form action="/listing/<%= list._id %>?_method=PUT" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
 
@@ -22,6 +22,23 @@
             <label for="listing[image][url]" class="from-label">Image : </label>
             <input type="file" name="listing[image][url]" value="<%= list.image.url %>" class="form-control">
             <div class="invalid-feedback">Enter a image url</div>
+        </div>
+
+        <div class="category mt-2">
+            <label for="listing[category]">Category :</label>
+            <select name="listing[category]" class="form-select mt-1">
+            <option value="Trending">Trending</option>
+            <option value="Mountain">Mountain</option>
+            <option value="Hotel">Hotel</option>
+            <option value="Castles">Castles</option>
+            <option value="Swimming">Swimming</option>
+            <option value="Mountain City">Mountain City</option>
+            <option value="Camping">Camping</option>
+            <option value="Farms">Farms</option>
+            <option value="Arctic">Arctic</option>
+            <option value="Domes">Domes</option>
+            <option value="Boats">Boats</option>
+            </select>
         </div>
 
         <div class="row">

@@ -1,110 +1,100 @@
 <% layout('/layout/boilerplate.ejs') %>  
-    <!-- <form action="/listing/new" method="get">
-        <button>Create Listing</button>
-    </form> -->
+    
+<div class="category-wrapper">
 
-    <style>
-      #filters{
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-      .filter{
-        text-align: center;
-        margin-left: 2.5rem;
-        margin-top: 1rem;
-        opacity: 0.8;
-        cursor: pointer;
-      }
-      .filter:hover{
-        opacity: 1;
-      }
-      .filter p{
-        font-size: 0.8rem;
-      }
-      #tax-switch{
-        border: 1px solid black;
-        height: 3rem;
-        border-radius: 10px;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: auto;
-        margin-right: 2.2rem;
-      }
-      .tax-toggle{
-        display: none;
-      }
-      .form-check-input{
-        cursor: pointer;
-      }
-    </style>
+  <button class="arrow left" onclick="scrollCat(-300)">&#10094;</button>
 
-    <div id="filters">
-      <div class="filter">
+  <div class="category-slider" id="categorySlider">
+
+    <div class="category-item">
+      <a href="/listing">
+        <div><i class="fa-solid fa-border-all"></i></div>
+       <p>All</p>
+      </a>
+    </div> 
+
+    <div class="category-item">
+      <a href="/listing/category/Trending">
         <div><i class="fa-solid fa-fire"></i></div>
-        <p>Trending</p>
-      </div>
-
-      <div class="filter">
-        <div><i class="fa-solid fa-mountain"></i></div>
-        <p>Mountains</p>
-      </div>
-
-      <div class="filter">
-        <div><i class="fa-solid fa-bed"></i></div>
-        <p>Rooms</p>
-      </div>
-
-      <div class="filter">
-        <div><i class="fa-solid fa-mountain-city"></i></div>
-        <p>Iconic cities</p>
-      </div>
-
-      <div class="filter">
-        <div><i class="fa-brands fa-fort-awesome"></i></div>
-        <p>Castles</p>
-      </div>
-
-      <div class="filter">
-        <div><i class="fa-solid fa-person-swimming"></i></div>
-        <p>Amazing Pools</p>
-      </div>
-
-      <div class="filter">
+       <p>Trending</p>
+      </a>
+    </div>
+    <div class="category-item">
+       <a href="/listing/category/Mountain">
+       <div><i class="fa-solid fa-mountain"></i></div>
+       <p>Mountain</p>
+      </a>
+    </div>
+    <div class="category-item">
+      <a href="/listing/category/Hotel">
+       <div><i class="fa-solid fa-bed"></i></div>
+       <p>Hotel</p>
+      </a>
+    </div>
+    <div class="category-item">
+      <a href="/listing/category/MountainCity">
+       <div><i class="fa-solid fa-mountain-city"></i></div>
+       <p>MountainCity</p>
+      </a>
+    </div>
+     <div class="category-item">
+      <a href="/listing/category/Castels">
+      <div><i class="fa-brands fa-fort-awesome"></i></div>
+       <p>Castels</p>
+      </a>
+    </div>
+     <div class="category-item">
+      <a href="/listing/category/Swimming">
+       <div><i class="fa-solid fa-person-swimming"></i></div>
+       <p>Swimming</p>
+      </a>
+    </div>
+     <div class="category-item">
+      <a href="/listing/category/Camping">
         <div><i class="fa-solid fa-campground"></i></div>
-        <p>Capming</p>
-      </div>
-
-      <div class="filter">
+       <p>Camping</p>
+      </a>
+    </div>
+    <div class="category-item">
+      <a href="/listing/category/Farms">
         <div><i class="fa-solid fa-cow"></i></div>
-        <p>farms</p>
-      </div>
-
-      <div class="filter">
-        <div><i class="fa-solid fa-snowflake"></i></div>
-        <p>Arctic</p>
-      </div>
-
-      <div class="filter">
-        <div><i class="fa-solid fa-igloo"></i></div>
+       <p>Farms</p>
+      </a>
+    </div>
+     <div class="category-item">
+      <a href="/listing/category/Arctic">
+         <div><i class="fa-solid fa-snowflake"></i></div>
+       <p>Arctic</p>
+      </a>
+    </div>
+    <div class="category-item">
+      <a href="/listing/category/Domes">
+       <div><i class="fa-solid fa-igloo"></i></div>
         <p>Domes</p>
+      </a>
       </div>
 
-      <div class="filter">
-        <div><i class="fa-solid fa-ship"></i></div>
+      <div class="category-item">
+        <a href="/listing/category/Boats">
+       <div><i class="fa-solid fa-ship"></i></div>
         <p>Boats</p>
+      </a>
       </div>
 
-      <div id="tax-switch">
+      <!-- <div id="tax-switch">
         <div class="form-check form-switch">
         <label class="form-check-label" for="switchCheckDefault">Display after total taxes</label>
         <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
         </div>
-      </div>
+      </div> -->
 
-    </div>
+  </div>
+
+  <button class="arrow right" onclick="scrollCat(300)">&#10095;</button>
+</div>
+
+    
+
 
    <div class="row row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
      <% for (let list of allListings) {%>
@@ -123,18 +113,3 @@
        </a>
     <% }%>
    </div>
-
-   <script>
-     let totalPrice = document.getElementById('tax-switch');
-     let infotax = document.getElementsByClassName('tax-toggle');
-      totalPrice.addEventListener('click', () =>{
-            for(let info of infotax){
-               if(info.style.display !== 'inline'){
-                  info.style.display = 'inline';
-               }else{
-                info.style.display = 'none';
-               }
-            }
-      });
-
-   </script>
